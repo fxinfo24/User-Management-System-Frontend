@@ -21,6 +21,9 @@ function App() {
     .then(response => response.json())
     .then(data => {
       console.log('Inside post response',data);
+      if(data.insertedId){
+        alert('User added successfully')
+      }
     })
   }, [users])
 
