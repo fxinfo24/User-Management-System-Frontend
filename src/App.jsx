@@ -11,21 +11,24 @@ function App() {
   },[])
 
   useEffect(() => {
-    fetch('http://localhost:5009/users', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({users: users}),
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Inside post response',data);
-      if(data.insertedId){
-        alert('User added successfully')
-      }
-    })
+    if (users.length > 0) {
+      fetch('http://localhost:5009/users', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({users: users}),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Inside post response',data);
+        if(data.insertedId){
+          alert('User added successfully')
+        }
+      })
+    }
   }, [users])
+  
 
   const handleAddUser = event => {
     event.preventDefault();
